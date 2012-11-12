@@ -77,7 +77,7 @@ public class NumberConverter
 	
 	private int hundred(List<String> subList)
 	{
-		
+		return(one(subList.get(0))*100);
 	}
 	
 	private int ten(List<String> subList)
