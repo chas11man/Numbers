@@ -83,9 +83,69 @@ public class NumberConverter
 	private int ten(List<String> subList)
 	{
 		int subNumber = 0;
-		while(!subList.isEmpty())
+		for(String word : subList)
 		{
-			
+			if(checkIfTen(word))
+			{
+				subNumber += ten(word);
+			}
+			else if(checkIfTeen(word))
+			{
+				subNumber += teen(word);
+			}
+			else if(checkIfOne(word))
+			{
+				subNumber += one(word);
+			}
+		}
+		return subNumber;
+	}
+	
+	private boolean checkIfTen(String num)
+	{
+		switch(num)
+		{
+			case "twenty":	return true;
+			case "thirty":	return true;
+			case "forty":	return true;
+			case "fifty":	return true;
+			case "sixty":	return true;
+			case "seventy":	return true;
+			case "eighty":	return true;
+			case "ninety":	return true;
+			default:		return false;
+		}
+	}
+	
+	private int ten(String num)
+	{
+		switch(num)
+		{
+			case "twenty": return 20;
+			case "thirty": return 30;
+			case "forty": return 40;
+			case "fifty": return 50;
+			case "sixty": return 60;
+			case "seventy": return 70;
+			case "eighty": return 80;
+			case "ninety": return 90;
+		}
+	}
+	
+	private boolean checkIfTeen(String num)
+	{
+		switch(num)
+		{
+			case "eleven":		return true;
+			case "twelve":		return true;
+			case "thirteen":	return true;
+			case "fourteen":	return true;
+			case "fifteen":		return true;
+			case "sixteen":		return true;
+			case "seventeen":	return true;
+			case "eighteen":	return true;
+			case "nineteen":	return true;
+			default:			return false;
 		}
 	}
 	
@@ -103,6 +163,22 @@ public class NumberConverter
 			case "eighteen": return 18;
 			case "nineteen": return 19;
 		}
+	}
+	
+	private boolean checkIfOne(String num)
+	{
+		switch(num)
+		{
+			case "one":		return true;
+			case "two":		return true;
+			case "three":	return true;
+			case "four":	return true;
+			case "five":	return true;
+			case "six":		return true;
+			case "seven":	return true;
+			case "eight":	return true;
+			case "nine":	return true;
+			default:		return false;
 	}
 	
 	private int one(String num)
