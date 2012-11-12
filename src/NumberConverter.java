@@ -66,13 +66,34 @@ public class NumberConverter
 			if(subList.contains("hundred"))
 			{
 				subNumber += hundred(subList.subList(0, subList.indexOf("hundred")));
+				subList = subList.subList(subList.indexOf("hundred"), subList.size());
+			}
+			else
+			{
+				subNumber += ten(subList);
+				subList = subList.subList(0, 0);
 			}
 		}
+		return(subNumber*1000000);
 	}
 	
 	private int thousand(List<String> subList)
 	{
-		
+		int subNumber = 0;
+		while(!subList.isEmpty())
+		{
+			if(subList.contains("hundred"))
+			{
+				subNumber += hundred(subList.subList(0, subList.indexOf("hundred")));
+				subList = subList.subList(subList.indexOf("hundred"), subList.size());
+			}
+			else
+			{
+				subNumber += ten(subList);
+				subList = subList.subList(0, 0);
+			}
+		}
+		return(subNumber*1000);
 	}
 	
 	private int hundred(List<String> subList)
@@ -136,6 +157,7 @@ public class NumberConverter
 	{
 		switch(num)
 		{
+			case "ten":			return true;
 			case "eleven":		return true;
 			case "twelve":		return true;
 			case "thirteen":	return true;
@@ -153,15 +175,16 @@ public class NumberConverter
 	{
 		switch(num)
 		{
-			case "eleven": return 11;
-			case "twelve": return 12;
-			case "thirteen": return 13;
-			case "fourteen": return 14;
-			case "fifteen": return 15;
-			case "sixteen": return 16;
-			case "seventeen": return 17;
-			case "eighteen": return 18;
-			case "nineteen": return 19;
+			case "ten":			return 10;
+			case "eleven":		return 11;
+			case "twelve":		return 12;
+			case "thirteen":	return 13;
+			case "fourteen":	return 14;
+			case "fifteen":		return 15;
+			case "sixteen":		return 16;
+			case "seventeen":	return 17;
+			case "eighteen":	return 18;
+			case "nineteen":	return 19;
 		}
 	}
 	
