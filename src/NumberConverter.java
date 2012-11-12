@@ -11,7 +11,7 @@ public class NumberConverter
 		
 		while(in.hasNext())
 		{
-			lines.add(in.nextLine());
+			lines.add(in.next());
 		}
 		NumberConverter nc = new NumberConverter();
 		int number = nc.convertNumber(lines);
@@ -38,17 +38,22 @@ public class NumberConverter
 			else if(input.contains("million"))
 			{
 				number += million(input.subList(0, input.indexOf("million")));
-				input = input.subList(input.indexOf("million"), input.size());
+				input = input.subList(input.indexOf("million")+1, input.size());
 			}
 			else if(input.contains("thousand"))
 			{
 				number += thousand(input.subList(0, input.indexOf("thousand")));
-				input = input.subList(input.indexOf("thousand"), input.size());
+				input = input.subList(input.indexOf("thousand")+1, input.size());
 			}
 			else if(input.contains("hundred"))
 			{
 				number += hundred(input.subList(0, input.indexOf("hundred")));
-				input = input.subList(input.indexOf("hundred"), input.size());
+				input = input.subList(input.indexOf("hundred")+1, input.size());
+			}
+			else
+			{
+				number += ten(input);
+				input = input.subList(0, 0);
 			}
 		}
 		if(negative == true)
@@ -60,45 +65,38 @@ public class NumberConverter
 	
 	private int million(List<String> subList)
 	{
-		int subNumber = 0;
-		while(!subList.isEmpty())
-		{
-			if(subList.contains("hundred"))
-			{
-				subNumber += hundred(subList.subList(0, subList.indexOf("hundred")));
-				subList = subList.subList(subList.indexOf("hundred"), subList.size());
-			}
-			else
-			{
-				subNumber += ten(subList);
-				subList = subList.subList(0, 0);
-			}
-		}
+		int subNumber = prefix(subList);
 		return(subNumber*1000000);
 	}
 	
 	private int thousand(List<String> subList)
 	{
-		int subNumber = 0;
-		while(!subList.isEmpty())
-		{
-			if(subList.contains("hundred"))
-			{
-				subNumber += hundred(subList.subList(0, subList.indexOf("hundred")));
-				subList = subList.subList(subList.indexOf("hundred"), subList.size());
-			}
-			else
-			{
-				subNumber += ten(subList);
-				subList = subList.subList(0, 0);
-			}
-		}
+		int subNumber = prefix(subList);
 		return(subNumber*1000);
 	}
 	
 	private int hundred(List<String> subList)
 	{
 		return(one(subList.get(0))*100);
+	}
+	
+	private int prefix(List<String> subList)
+	{
+		int subNumber = 0;
+		while(!subList.isEmpty())
+		{
+			if(subList.contains("hundred"))
+			{
+				subNumber += hundred(subList.subList(0, subList.indexOf("hundred")));
+				subList = subList.subList(subList.indexOf("hundred")+1, subList.size());
+			}
+			else
+			{
+				subNumber += ten(subList);
+				subList = subList.subList(0, 0);
+			}
+		}
+		return subNumber;
 	}
 	
 	private int ten(List<String> subList)
@@ -142,15 +140,16 @@ public class NumberConverter
 	{
 		switch(num)
 		{
-			case "twenty": return 20;
-			case "thirty": return 30;
-			case "forty": return 40;
-			case "fifty": return 50;
-			case "sixty": return 60;
-			case "seventy": return 70;
-			case "eighty": return 80;
-			case "ninety": return 90;
+			case "twenty":	return 20;
+			case "thirty":	return 30;
+			case "forty":	return 40;
+			case "fifty":	return 50;
+			case "sixty":	return 60;
+			case "seventy":	return 70;
+			case "eighty":	return 80;
+			case "ninety":	return 90;
 		}
+		return 0;
 	}
 	
 	private boolean checkIfTeen(String num)
@@ -186,6 +185,7 @@ public class NumberConverter
 			case "eighteen":	return 18;
 			case "nineteen":	return 19;
 		}
+		return 0;
 	}
 	
 	private boolean checkIfOne(String num)
@@ -202,21 +202,23 @@ public class NumberConverter
 			case "eight":	return true;
 			case "nine":	return true;
 			default:		return false;
+		}
 	}
 	
 	private int one(String num)
 	{
 		switch(num)
 		{
-			case "one": return 1;
-			case "two": return 2;
-			case "three": return 3;
-			case "four": return 4;
-			case "five": return 5;
-			case "six": return 6;
-			case "seven": return 7;
-			case "eight": return 8;
-			case "nine": return 9;
+			case "one":		return 1;
+			case "two":		return 2;
+			case "three":	return 3;
+			case "four":	return 4;
+			case "five":	return 5;
+			case "six":		return 6;
+			case "seven":	return 7;
+			case "eight":	return 8;
+			case "nine":	return 9;
+			default:		return 0;
 		}
 	}
 }
