@@ -1,26 +1,10 @@
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class NumberConverter
 {
-	public static void main(String[] args)
-	{
-		Scanner in = new Scanner(System.in);
-		List<String> lines = new ArrayList<String>();
-		
-		while(in.hasNext())
-		{
-			lines.add(in.next());
-		}
-		NumberConverter nc = new NumberConverter();
-		int number = nc.convertNumber(lines);
-		System.out.println(number);
-	}
-	
 	public int convertNumber(List<String> input)
 	{
-		if(input.get(0) == "naught" || input.get(0) == "zero")
+		if(checkIfZero(input.get(0)))
 		{
 			return 0;
 		}
@@ -29,7 +13,7 @@ public class NumberConverter
 		boolean negative = false;
 		while(!input.isEmpty())
 		{
-			if(input.contains("negative") || input.contains("minus"))
+			if(checkIfNegative(input.get(0)))
 			{
 				negative = true;
 				input.remove("negative");
@@ -120,7 +104,7 @@ public class NumberConverter
 		return subNumber;
 	}
 	
-	private boolean checkIfTen(String num)
+	public boolean checkIfTen(String num)
 	{
 		switch(num)
 		{
@@ -152,7 +136,7 @@ public class NumberConverter
 		return 0;
 	}
 	
-	private boolean checkIfTeen(String num)
+	public boolean checkIfTeen(String num)
 	{
 		switch(num)
 		{
@@ -188,7 +172,7 @@ public class NumberConverter
 		return 0;
 	}
 	
-	private boolean checkIfOne(String num)
+	public boolean checkIfOne(String num)
 	{
 		switch(num)
 		{
@@ -219,6 +203,26 @@ public class NumberConverter
 			case "eight":	return 8;
 			case "nine":	return 9;
 			default:		return 0;
+		}
+	}
+	
+	public boolean checkIfNegative(String num)
+	{
+		switch(num)
+		{
+			case "negative":	return true;
+			case "minus":		return true;
+			default:			return false;
+		}
+	}
+	
+	public boolean checkIfZero(String num)
+	{
+		switch(num)
+		{
+			case "zero":	return true;
+			case "naught":	return true;
+			default:		return false;
 		}
 	}
 }

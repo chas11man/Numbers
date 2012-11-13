@@ -26,7 +26,7 @@
         <delete dir="bin"/>
     </target>
 	<target name="run">
-        <java classname="NumberConverter" failonerror="true" fork="yes">
+        <java classname="NumberScanner" failonerror="true" fork="yes">
             <classpath refid="classpath"/> <!-- so we can find our compiled bits! -->
         </java>
     </target>
