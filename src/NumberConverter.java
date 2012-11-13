@@ -47,46 +47,46 @@ public class NumberConverter
 		return number;
 	}
 	
-	private int million(List<String> subList)
+	private int million(List<String> subInput)
 	{
-		int subNumber = prefix(subList);
+		int subNumber = prefix(subInput);
 		return(subNumber*1000000);
 	}
 	
-	private int thousand(List<String> subList)
+	private int thousand(List<String> subInput)
 	{
-		int subNumber = prefix(subList);
+		int subNumber = prefix(subInput);
 		return(subNumber*1000);
 	}
 	
-	private int hundred(List<String> subList)
+	private int hundred(List<String> subInput)
 	{
-		return(one(subList.get(0))*100);
+		return(one(subInput.get(0))*100);
 	}
 	
-	private int prefix(List<String> subList)
+	private int prefix(List<String> subInput)
 	{
 		int subNumber = 0;
-		while(!subList.isEmpty())
+		while(!subInput.isEmpty())
 		{
-			if(subList.contains("hundred"))
+			if(subInput.contains("hundred"))
 			{
-				subNumber += hundred(subList.subList(0, subList.indexOf("hundred")));
-				subList = subList.subList(subList.indexOf("hundred")+1, subList.size());
+				subNumber += hundred(subInput.subList(0, subInput.indexOf("hundred")));
+				subInput = subInput.subList(subInput.indexOf("hundred")+1, subInput.size());
 			}
 			else
 			{
-				subNumber += ten(subList);
-				subList = subList.subList(0, 0);
+				subNumber += ten(subInput);
+				subInput = subInput.subList(0, 0);
 			}
 		}
 		return subNumber;
 	}
 	
-	private int ten(List<String> subList)
+	private int ten(List<String> subInput)
 	{
 		int subNumber = 0;
-		for(String word : subList)
+		for(String word : subInput)
 		{
 			if(checkIfTen(word))
 			{

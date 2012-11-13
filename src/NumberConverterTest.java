@@ -1,14 +1,24 @@
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Test;
 
 public class NumberConverterTest
-{
+{	
 	@Test
-	public void test() {
+	public void testCheckIfTeen() {
+		
+	}
+	
+	@Test
+	public void testCheckIfOne() {
+		
+	}
+	
+	@Test
+	public void testCheckIfNegative() {
+		
+	}
+	
+	@Test
+	public void testCheckIfZero() {
 		
 	}
 }
