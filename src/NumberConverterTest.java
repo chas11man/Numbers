@@ -120,7 +120,15 @@ public class NumberConverterTest
 		Method twoDigitTypeCheck = NumberConverter.class.getDeclaredMethod("twoDigitTypeCheck", List.class);
 		twoDigitTypeCheck.setAccessible(true);
 		
+		assertEquals(11, twoDigitTypeCheck.invoke(nc, stringToList("eleven")));
+		assertEquals(1, twoDigitTypeCheck.invoke(nc, stringToList("one")));
+		assertEquals(21, twoDigitTypeCheck.invoke(nc, stringToList("twenty,one")));
+		assertEquals(80, twoDigitTypeCheck.invoke(nc, stringToList("eighty")));
 		
+		//Will not be allowed by ValidNumberCheck
+		assertEquals(16, twoDigitTypeCheck.invoke(nc, stringToList("eleven,five")));
+		assertEquals(0, twoDigitTypeCheck.invoke(nc, stringToList("hundred")));
+		assertEquals(0, twoDigitTypeCheck.invoke(nc, stringToList("bad")));
 	}
 	
 	@Test
