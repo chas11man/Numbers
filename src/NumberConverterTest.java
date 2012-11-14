@@ -99,6 +99,7 @@ public class NumberConverterTest
 	public void testTeen() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchFieldException, NoSuchMethodException {
 		Method teen = NumberConverter.class.getDeclaredMethod("teen", String.class);
 		teen.setAccessible(true);
+		assertEquals(10, teen.invoke(nc, "ten"));
 		assertEquals(11, teen.invoke(nc, "eleven"));
 		assertEquals(12, teen.invoke(nc, "twelve"));
 		assertEquals(13, teen.invoke(nc, "thirteen"));
@@ -113,6 +114,26 @@ public class NumberConverterTest
 		assertEquals(0, teen.invoke(nc, "thousand"));
 		assertEquals(0, teen.invoke(nc, "seventy"));
 		assertEquals(0, teen.invoke(nc, "negative"));
+	}
+	
+	@Test
+	public void testTen() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchFieldException, NoSuchMethodException {
+		Method ten = NumberConverter.class.getDeclaredMethod("ten", String.class);
+		ten.setAccessible(true);
+		
+		assertEquals(20, ten.invoke(nc, "twenty"));
+		assertEquals(30, ten.invoke(nc, "thirty"));
+		assertEquals(40, ten.invoke(nc, "forty"));
+		assertEquals(50, ten.invoke(nc, "fifty"));
+		assertEquals(60, ten.invoke(nc, "sixty"));
+		assertEquals(70, ten.invoke(nc, "seventy"));
+		assertEquals(80, ten.invoke(nc, "eighty"));
+		assertEquals(90, ten.invoke(nc, "ninety"));
+		
+		assertEquals(0, ten.invoke(nc, "ten"));
+		assertEquals(0, ten.invoke(nc, "million"));
+		assertEquals(0, ten.invoke(nc, "fifteen"));
+		assertEquals(0, ten.invoke(nc, "naught"));
 	}
 	
 	@Test
@@ -132,33 +153,71 @@ public class NumberConverterTest
 	}
 	
 	@Test
-	public void testTen() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchFieldException, NoSuchMethodException {
-		Method ten = NumberConverter.class.getDeclaredMethod("ten", String.class);
-		ten.setAccessible(true);
-	}
-	
-	@Test
 	public void testPrefix() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchFieldException, NoSuchMethodException {
 		Method prefix = NumberConverter.class.getDeclaredMethod("prefix", List.class);
 		prefix.setAccessible(true);
+		
+		assertEquals(0, prefix.invoke(nc, stringToList("")));
+		assertEquals(5, prefix.invoke(nc, stringToList("five")));
+		assertEquals(16, prefix.invoke(nc, stringToList("sixteen")));
+		assertEquals(27, prefix.invoke(nc, stringToList("twenty,seven")));
+		assertEquals(100, prefix.invoke(nc, stringToList("one,hundred")));
+		assertEquals(201, prefix.invoke(nc, stringToList("two,hundred,one")));
+		assertEquals(312, prefix.invoke(nc, stringToList("three,hundred,twelve")));
+		assertEquals(423, prefix.invoke(nc, stringToList("four,hundred,twenty,three")));
+		assertEquals(530, prefix.invoke(nc, stringToList("five,hundred,thirty")));
+		
+		//Will not be allowed by ValidNumberCheck
+		assertEquals(0, prefix.invoke(nc, stringToList("eleven,hundred")));
+		assertEquals(230, prefix.invoke(nc, stringToList("one,hundred,fifty,eighty")));
 	}
 	
 	@Test
 	public void testHundred() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchFieldException, NoSuchMethodException {
 		Method hundred = NumberConverter.class.getDeclaredMethod("hundred", List.class);
 		hundred.setAccessible(true);
+		
+		assertEquals(600, hundred.invoke(nc, stringToList("six,hundred")));
+		assertEquals(800, hundred.invoke(nc, stringToList("eight")));
+		//Will not be allowed by ValidNumberCheck
+		assertEquals(0, hundred.invoke(nc, stringToList("eleven")));
+		assertEquals(0, hundred.invoke(nc, stringToList("twenty")));
+		assertEquals(0, hundred.invoke(nc, stringToList("hundred")));
+		assertEquals(0, hundred.invoke(nc, stringToList("zero")));
 	}
 	
 	@Test
 	public void testThousand() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchFieldException, NoSuchMethodException {
 		Method thousand = NumberConverter.class.getDeclaredMethod("thousand", List.class);
 		thousand.setAccessible(true);
+		
+		assertEquals(600000, thousand.invoke(nc, stringToList("six,hundred")));
+		assertEquals(8000, thousand.invoke(nc, stringToList("eight")));
+		assertEquals(11000, thousand.invoke(nc, stringToList("eleven")));
+		assertEquals(20000, thousand.invoke(nc, stringToList("twenty")));
+		assertEquals(609000, thousand.invoke(nc, stringToList("six,hundred,nine")));
+		assertEquals(712000, thousand.invoke(nc, stringToList("seven,hundred,twelve")));
+		assertEquals(850000, thousand.invoke(nc, stringToList("eight,hundred,fifty")));
+		assertEquals(967000, thousand.invoke(nc, stringToList("nine,hundred,sixty,seven")));
+		//Will not be allowed by ValidNumberCheck
+		assertEquals(0, thousand.invoke(nc, stringToList("zero")));
 	}
 	
 	@Test
 	public void testMillion() throws IllegalArgumentException, IllegalAccessException, InvocationTargetException, SecurityException, NoSuchFieldException, NoSuchMethodException {
 		Method million = NumberConverter.class.getDeclaredMethod("million", List.class);
 		million.setAccessible(true);
+		
+		assertEquals(600000000, million.invoke(nc, stringToList("six,hundred")));
+		assertEquals(8000000, million.invoke(nc, stringToList("eight")));
+		assertEquals(11000000, million.invoke(nc, stringToList("eleven")));
+		assertEquals(20000000, million.invoke(nc, stringToList("twenty")));
+		assertEquals(609000000, million.invoke(nc, stringToList("six,hundred,nine")));
+		assertEquals(712000000, million.invoke(nc, stringToList("seven,hundred,twelve")));
+		assertEquals(850000000, million.invoke(nc, stringToList("eight,hundred,fifty")));
+		assertEquals(967000000, million.invoke(nc, stringToList("nine,hundred,sixty,seven")));
+		//Will not be allowed by ValidNumberCheck
+		assertEquals(0, million.invoke(nc, stringToList("zero")));
 	}
 	
 	@Test
