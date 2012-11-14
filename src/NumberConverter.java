@@ -36,7 +36,7 @@ public class NumberConverter
 			}
 			else
 			{
-				number += ten(input);
+				number += twoDigitTypeCheck(input);
 				input = input.subList(0, 0);
 			}
 		}
@@ -76,14 +76,14 @@ public class NumberConverter
 			}
 			else
 			{
-				subNumber += ten(subInput);
+				subNumber += twoDigitTypeCheck(subInput);
 				subInput = subInput.subList(0, 0);
 			}
 		}
 		return subNumber;
 	}
 	
-	private int ten(List<String> subInput)
+	private int twoDigitTypeCheck(List<String> subInput)
 	{
 		int subNumber = 0;
 		for(String word : subInput)
