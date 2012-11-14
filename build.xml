@@ -35,6 +35,7 @@
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <test name="NumberConverterTest" todir="${junit.output.dir}"/>
+        	<test name="ValidNumberCheckTest" todir="${junit.output.dir}"/>
             <classpath refid="classpath"/>
         </junit>
     </target>

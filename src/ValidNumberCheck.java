@@ -1,21 +1,14 @@
 import java.util.List;
 
 public class ValidNumberCheck
-{
-	private List<String> numbers;
-	
-	public ValidNumberCheck(List<String> numberList)
+{	
+	public boolean validInput(List<String> numberList)
 	{
-		numbers = numberList;
-	}
-	
-	public boolean validInput()
-	{
-		for(String word : numbers)
+		for(String word : numberList)
 		{
 			validWord(word);
 		}
-		validOrder(numbers);
+		validOrder(numberList);
 		return true;
 	}
 	

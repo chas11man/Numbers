@@ -14,8 +14,8 @@ public class NumberScanner
 			lines.add(in.next());
 		}
 		
-		ValidNumberCheck vnc = new ValidNumberCheck(lines);
-		vnc.validInput();
+		ValidNumberCheck vnc = new ValidNumberCheck();
+		vnc.validInput(lines);
 		
 		NumberConverter nc = new NumberConverter();
 		int number = nc.convertNumber(lines);
