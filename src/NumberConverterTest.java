@@ -222,6 +222,99 @@ public class NumberConverterTest
 	
 	@Test
 	public void testConvertNumber() {
+		assertEquals(0, nc.convertNumber(stringToList("")));
+		assertEquals(0, nc.convertNumber(stringToList("zero")));
+		assertEquals(0, nc.convertNumber(stringToList("naught")));
+		assertEquals(-1, nc.convertNumber(stringToList("negative,one")));
+		assertEquals(-1, nc.convertNumber(stringToList("minus,one")));
 		
+		assertEquals(1, nc.convertNumber(stringToList("one")));
+		assertEquals(11, nc.convertNumber(stringToList("eleven")));
+		assertEquals(20, nc.convertNumber(stringToList("twenty")));
+		assertEquals(21, nc.convertNumber(stringToList("twenty,one")));
+		assertEquals(100, nc.convertNumber(stringToList("one,hundred")));
+		assertEquals(101, nc.convertNumber(stringToList("one,hundred,one")));
+		assertEquals(111, nc.convertNumber(stringToList("one,hundred,eleven")));
+		assertEquals(120, nc.convertNumber(stringToList("one,hundred,twenty")));
+		assertEquals(121, nc.convertNumber(stringToList("one,hundred,twenty,one")));
+		
+		assertEquals(-1, nc.convertNumber(stringToList("negative,one")));
+		assertEquals(-11, nc.convertNumber(stringToList("negative,eleven")));
+		assertEquals(-20, nc.convertNumber(stringToList("negative,twenty")));
+		assertEquals(-21, nc.convertNumber(stringToList("negative,twenty,one")));
+		assertEquals(-100, nc.convertNumber(stringToList("negative,one,hundred")));
+		assertEquals(-101, nc.convertNumber(stringToList("negative,one,hundred,one")));
+		assertEquals(-111, nc.convertNumber(stringToList("negative,one,hundred,eleven")));
+		assertEquals(-120, nc.convertNumber(stringToList("negative,one,hundred,twenty")));
+		assertEquals(-121, nc.convertNumber(stringToList("negative,one,hundred,twenty,one")));
+		
+		assertEquals(1001, nc.convertNumber(stringToList("one,thousand,one")));
+		assertEquals(1011, nc.convertNumber(stringToList("one,thousand,eleven")));
+		assertEquals(1020, nc.convertNumber(stringToList("one,thousand,twenty")));
+		assertEquals(1021, nc.convertNumber(stringToList("one,thousand,twenty,one")));
+		assertEquals(1100, nc.convertNumber(stringToList("one,thousand,one,hundred")));
+		assertEquals(1101, nc.convertNumber(stringToList("one,thousand,one,hundred,one")));
+		assertEquals(1111, nc.convertNumber(stringToList("one,thousand,one,hundred,eleven")));
+		assertEquals(1120, nc.convertNumber(stringToList("one,thousand,one,hundred,twenty")));
+		assertEquals(1121, nc.convertNumber(stringToList("one,thousand,one,hundred,twenty,one")));
+		
+		assertEquals(-1001, nc.convertNumber(stringToList("negative,one,thousand,one")));
+		assertEquals(-1011, nc.convertNumber(stringToList("negative,one,thousand,eleven")));
+		assertEquals(-1020, nc.convertNumber(stringToList("negative,one,thousand,twenty")));
+		assertEquals(-1021, nc.convertNumber(stringToList("negative,one,thousand,twenty,one")));
+		assertEquals(-1100, nc.convertNumber(stringToList("negative,one,thousand,one,hundred")));
+		assertEquals(-1101, nc.convertNumber(stringToList("negative,one,thousand,one,hundred,one")));
+		assertEquals(-1111, nc.convertNumber(stringToList("negative,one,thousand,one,hundred,eleven")));
+		assertEquals(-1120, nc.convertNumber(stringToList("negative,one,thousand,one,hundred,twenty")));
+		assertEquals(-1121, nc.convertNumber(stringToList("negative,one,thousand,one,hundred,twenty,one")));
+		
+		assertEquals(1000001, nc.convertNumber(stringToList("one,million,one")));
+		assertEquals(1000011, nc.convertNumber(stringToList("one,million,eleven")));
+		assertEquals(1000020, nc.convertNumber(stringToList("one,million,twenty")));
+		assertEquals(1000021, nc.convertNumber(stringToList("one,million,twenty,one")));
+		assertEquals(1000100, nc.convertNumber(stringToList("one,million,one,hundred")));
+		assertEquals(1000101, nc.convertNumber(stringToList("one,million,one,hundred,one")));
+		assertEquals(1000111, nc.convertNumber(stringToList("one,million,one,hundred,eleven")));
+		assertEquals(1000120, nc.convertNumber(stringToList("one,million,one,hundred,twenty")));
+		assertEquals(1000121, nc.convertNumber(stringToList("one,million,one,hundred,twenty,one")));
+		
+		assertEquals(-1000001, nc.convertNumber(stringToList("negative,one,million,one")));
+		assertEquals(-1000011, nc.convertNumber(stringToList("negative,one,million,eleven")));
+		assertEquals(-1000020, nc.convertNumber(stringToList("negative,one,million,twenty")));
+		assertEquals(-1000021, nc.convertNumber(stringToList("negative,one,million,twenty,one")));
+		assertEquals(-1000100, nc.convertNumber(stringToList("negative,one,million,one,hundred")));
+		assertEquals(-1000101, nc.convertNumber(stringToList("negative,one,million,one,hundred,one")));
+		assertEquals(-1000111, nc.convertNumber(stringToList("negative,one,million,one,hundred,eleven")));
+		assertEquals(-1000120, nc.convertNumber(stringToList("negative,one,million,one,hundred,twenty")));
+		assertEquals(-1000121, nc.convertNumber(stringToList("negative,one,million,one,hundred,twenty,one")));
+		
+		assertEquals(1001001, nc.convertNumber(stringToList("one,million,one,thousand,one")));
+		assertEquals(1001011, nc.convertNumber(stringToList("one,million,one,thousand,eleven")));
+		assertEquals(1001020, nc.convertNumber(stringToList("one,million,one,thousand,twenty")));
+		assertEquals(1001021, nc.convertNumber(stringToList("one,million,one,thousand,twenty,one")));
+		assertEquals(1001100, nc.convertNumber(stringToList("one,million,one,thousand,one,hundred")));
+		assertEquals(1001101, nc.convertNumber(stringToList("one,million,one,thousand,one,hundred,one")));
+		assertEquals(1001111, nc.convertNumber(stringToList("one,million,one,thousand,one,hundred,eleven")));
+		assertEquals(1001120, nc.convertNumber(stringToList("one,million,one,thousand,one,hundred,twenty")));
+		assertEquals(1001121, nc.convertNumber(stringToList("one,million,one,thousand,one,hundred,twenty,one")));
+		
+		assertEquals(-1001001, nc.convertNumber(stringToList("negative,one,million,one,thousand,one")));
+		assertEquals(-1001011, nc.convertNumber(stringToList("negative,one,million,one,thousand,eleven")));
+		assertEquals(-1001020, nc.convertNumber(stringToList("negative,one,million,one,thousand,twenty")));
+		assertEquals(-1001021, nc.convertNumber(stringToList("negative,one,million,one,thousand,twenty,one")));
+		assertEquals(-1001100, nc.convertNumber(stringToList("negative,one,million,one,thousand,one,hundred")));
+		assertEquals(-1001101, nc.convertNumber(stringToList("negative,one,million,one,thousand,one,hundred,one")));
+		assertEquals(-1001111, nc.convertNumber(stringToList("negative,one,million,one,thousand,one,hundred,eleven")));
+		assertEquals(-1001120, nc.convertNumber(stringToList("negative,one,million,one,thousand,one,hundred,twenty")));
+		assertEquals(-1001121, nc.convertNumber(stringToList("negative,one,million,one,thousand,one,hundred,twenty,one")));
+		
+		assertEquals(999999999, nc.convertNumber(stringToList("nine,hundred,ninety,nine,million,nine,hundred,ninety,nine,thousand,nine,hundred,ninety,nine")));
+		assertEquals(919919919, nc.convertNumber(stringToList("nine,hundred,nineteen,million,nine,hundred,nineteen,thousand,nine,hundred,nineteen")));
+		assertEquals(990990990, nc.convertNumber(stringToList("nine,hundred,ninety,million,nine,hundred,ninety,thousand,nine,hundred,ninety")));
+		assertEquals(909909909, nc.convertNumber(stringToList("nine,hundred,nine,million,nine,hundred,nine,thousand,nine,hundred,nine")));
+		assertEquals(900900900, nc.convertNumber(stringToList("nine,hundred,million,nine,hundred,thousand,nine,hundred")));
+		assertEquals( 99099099, nc.convertNumber(stringToList("ninety,nine,million,ninety,nine,thousand,ninety,nine")));
+		assertEquals( 90090090, nc.convertNumber(stringToList("ninety,million,ninety,thousand,ninety")));
+		assertEquals(  9009009, nc.convertNumber(stringToList("nine,million,nine,thousand,nine")));
 	}
 }

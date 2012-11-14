@@ -4,7 +4,7 @@ public class NumberConverter
 {
 	public int convertNumber(List<String> input)
 	{
-		if(checkIfZero(input.get(0)))
+		if(checkIfZero(input.get(0)) || input.size() < 1)
 		{
 			return 0;
 		}
@@ -17,7 +17,7 @@ public class NumberConverter
 			{
 				negative = true;
 				input.remove("negative");
-				input.remove("positive");
+				input.remove("minus");
 			}
 			else if(input.contains("million"))
 			{
