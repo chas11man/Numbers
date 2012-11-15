@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class ValidNumberCheck
@@ -29,7 +30,7 @@ public class ValidNumberCheck
 	
 	private boolean validOrder(List<String> input)
 	{
-		List<String> tempNumbers = input;
+		List<String> tempNumbers = new ArrayList<String>(input);
 		int millionCount = 0;
 		int thousandCount = 0;
 		
@@ -94,6 +95,7 @@ public class ValidNumberCheck
 				else
 				{
 					tempNumbers.remove("negative");
+					negCount++;
 				}
 			}
 			else if(tempNumbers.contains("minus"))
@@ -106,6 +108,7 @@ public class ValidNumberCheck
 				else
 				{
 					tempNumbers.remove("minus");
+					negCount++;
 				}
 			}
 			negCount++;
